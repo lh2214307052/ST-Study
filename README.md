@@ -1,184 +1,132 @@
-# CFP Exam Study Repository
+# ST 编程从零到专家学习系统
 
-🎉 **I PASSED the CFP Exam on November 10, 2025!** 🎉
+> 以工程能力验收为核心的系统化 ST 学习引擎
 
-This is my personal study repository that helped me pass the Certified Financial Planner (CFP) exam on my second attempt. After failing in November 2024, I rebuilt my study approach using AI-powered guided learning with Claude Code - and it made all the difference.
+## 概述
 
-**Thanks to AI and Claude Code**, I went from a failed attempt to **82% mastery** (60/73 topics) across 23 focused study sessions, ultimately passing the exam.
+这是一个专为 PLC ST 编程打造的 AI 驱动学习仓库。与传统的"背语法"不同,这里强调**可运行的代码**、**工程化验收**、**实战模式积累**。每天学习会自动生成 session 记录,持续更新进度追踪,并产出可复用的 ST 代码模式(patterns)。
 
-**Let's connect on LinkedIn**: [linkedin.com/in/chenran818](https://linkedin.com/in/chenran818)
+### 核心特点
+
+✅ **工程导向**: 每个知识点必须落地到可运行的 FB/FC/程序段  
+✅ **能力分级**: 4 级掌握度(L0见过 → L1能照着写 → L2能独立写并解释边界 → L3能做成通用库)  
+✅ **苏格拉底教学**: 先问你会什么,再引导学习,避免填鸭  
+✅ **验收驱动**: 每个主题都有测试用例、边界条件、常见坑  
+✅ **模式积累**: 学习过程中沉淀可复用的 ST 代码模式库  
+
+## 仓库结构
+
+```
+/sessions/                    # 每日学习会话记录
+  /2025-12-21/               # 一个文件夹一天
+    plan.md                  # 今日计划与验收标准
+    exercises.st             # 练习代码骨架
+    review.md                # 学习复盘与总结
+  SESSION-TEMPLATE.md        # 会话记录模板
+
+/progress/                    # 学习进度追踪(唯一真相源)
+  st-study-tracker.md        # 能力树追踪:
+                             # - 8大模块 × 4级掌握度
+                             # - 12周学习路线
+                             # - 每周目标与验收
+
+/patterns/                    # 可复用的 ST 代码模式库
+  fb_state_machine.st        # 通用状态机框架
+  fb_pause_resume.st         # 全局暂停保持模块
+  fb_alarm_manager.st        # 报警管理模块
+  naming_conventions.md      # 命名与注释规范
+
+/docs/                       #教程库
+
+
+CLAUDE.md                     # AI 导师教学规则(核心)
+README.md                     # 本文件
+```
+
+## 如何使用
+
+### 每天开始学习
+
+1. 打开本仓库,对 AI 说: **"开始今天的 ST 学习"**
+2. AI 会读取你的进度,创建今日文件夹,生成今日计划
+3. 按照计划学习,完成练习代码
+4. 学习结束时,AI 会生成复盘总结并更新进度
+
+### 查看进度
+
+查看 `/progress/st-study-tracker.md`,了解:
+- 8大模块的掌握情况(每个主题的L0-L3级别)
+- 12周学习路线,当前处于第几周
+- 下一步应该学什么
+
+### 复盘回顾
+
+对 AI 说:
+- "复盘我最近的薄弱环节"
+- "今天应该学什么?"
+- "测试我对状态机的理解"
+- "给我出5道边界条件题"
+
+AI 会读取你的历史 session 记录,针对性给出复习建议。
+
+## 学习哲学
+
+**工程能力验收,而非背语法:**
+- 不是"会写IF语句",而是"能处理启停互锁和急停优先"
+- 不是"知道FB",而是"能封装可复用的状态机FB并有测试用例"
+- 不是"背定时器",而是"能处理防抖、延时启动、超时报警的组合场景"
+
+**能力分级标准:**
+- **L0 见过**: 看到代码能看懂在干什么
+- **L1 能照着写**: 给参考能仿写出类似功能
+- **L2 能独立写并解释边界**: 不看参考能写出来,能说出10种测试场景
+- **L3 能做成通用库**: 能封装成FB供项目复用,有完整文档和测试
+
+## 8大能力模块
+
+1. **语法基础** (变量、类型、基本逻辑、定时器/边沿)
+2. **数据与内存** (数组、结构体、指针/引用、数据持久化)
+3. **FB/FC结构** (函数块封装、接口设计、参数传递)
+4. **状态机/流程** (步进控制、状态转换、流程编排)
+5. **模式切换** (手动/自动/半自动、暂停保持、恢复续跑)
+6. **报警诊断** (故障检测、报警锁存、确认复位、消抖)
+7. **通讯与数据** (Modbus/TCP、数据交换、协议解析)
+8. **工程化与测试** (命名规范、代码复用、边界测试、文档注释)
+
+## 目标平台
+
+优先考虑 **IEC 61131-3** 思路,兼容 **汇川 Easy 系列** 常见限制:
+- FB/FC 组织方式
+- 避免递归
+- 注重互锁/异常/暂停恢复
+- 面向工程的清晰命名,禁止魔法数字
+
+## 立即开始
+
+今天是 **2025年12月21日**,第一天课程已经准备好了!
+
+**对 AI 说**: "开始第一天的 ST 学习"
+
+AI 会:
+1. 创建 `/sessions/2025-12-21/` 文件夹
+2. 生成今日学习计划(ST基础+时序思维入门)
+3. 给出练习: **单电机启停**(含急停、互锁、自保持、报警)
+4. 提供 8+ 测试场景让你验收
 
 ---
 
-**Final Exam Stats**:
-- **Exam Date**: November 10, 2025 ✅ PASSED
-- **Final Progress**: 82% (60/73 CFP topics mastered)
-- **Study Sessions**: 23 sessions (Oct 11 - Nov 7, 2025)
-- **Study Materials**: 1,088 pages (2024 Dalton Review slides)
+## 关于本系统
 
-## How This Works
+这个学习系统从 CFP 考试学习系统改造而来,核心理念一致:
+- AI 驱动的苏格拉底教学
+- 系统化进度追踪
+- 验收驱动的学习方式
+- 知识沉淀为可复用模式
 
-This repository uses Claude Code as an interactive CFP exam tutor that:
-- Teaches using the Socratic method (asking what you know first)
-- Provides concise (~200 word) explanations
-- Verifies your understanding with follow-up questions
-- Adapts teaching style based on your responses
-- **Tracks every learning session to personalize your study experience**
+但针对 PLC ST 编程做了深度定制:
+- 强调可运行的工程代码
+- 4级能力分级体系
+- 8大模块 × 12周路线
+- 沉淀 patterns 代码库
 
-## Repository Structure
-
-```
-/sessions/                    # 23 daily learning sessions documented
-  /2025-10-11/               # One folder per study day
-  /2025-10-17/               # Sessions from Oct 11 - Nov 7
-  /2025-11-07/
-  SESSION-TEMPLATE.md        # Template for documenting sessions
-
-/progress/                    # Single source of truth for exam prep
-  cfp-study-tracker.md       # Comprehensive tracker with:
-                             # - All 73 CFP topics mapped
-                             # - Topics mastered (60/73)
-                             # - Knowledge gaps identified
-                             # - Study plan for remaining days
-
-/2024 Slides/                 # Complete 2024 Dalton Review materials
-  2024 TDR Estate slides.pdf
-  2024 TDR Fundamentals slides.pdf
-  2024 TDR Insurance slides.pdf
-  2024 TDR Investments slides.pdf
-  2024 TDR Retirement slides.pdf
-  2024 TDR Tax slides.pdf
-
-CLAUDE.md                     # AI tutor instructions (Socratic method)
-README.md                     # This file
-```
-
-## How to Use
-
-### Daily Study Sessions
-
-1. Open Claude Code in this repository
-2. Ask questions about CFP topics naturally - just like talking to a tutor
-3. Answer the comprehension check questions Claude asks
-4. After each session, Claude will automatically document:
-   - What you learned
-   - What you struggled with
-   - What you mastered
-   - What to review next
-
-### Review Sessions
-
-When you want to review, simply ask Claude:
-- "Let's review topics I've struggled with"
-- "What should I focus on today?"
-- "Quiz me on my weak areas"
-- "Show me my progress"
-
-Claude will read your session history and create a personalized review based on your past performance.
-
-### Track Your Progress
-
-View your comprehensive study tracker at `/progress/cfp-study-tracker.md` to see:
-- Overall exam readiness (currently 82%)
-- Which domains are complete (4 major domains ✅)
-- Remaining knowledge gaps
-- Prioritized study plan for exam day
-
-## Study Philosophy
-
-**Guided Learning Approach:**
-- Conversational and judgment-free
-- Builds on your existing knowledge
-- Checks understanding before moving forward
-- Adapts to your learning style
-- Focuses on deep understanding, not just memorization
-
-## Study Materials
-
-**2024 Dalton Review Slides** (1,088 pages total):
-- Estate Planning (200 pages)
-- Fundamentals (90 pages)
-- Insurance (188 pages)
-- Investments (188 pages)
-- Retirement (182 pages)
-- Tax (150 pages)
-
-All materials have been thoroughly mapped to the 73 CFP exam topics.
-
-## Free Study Resources
-
-In addition to the Dalton Review materials, here are some excellent **free resources** that can supplement your CFP exam prep:
-
-**Podcasts & Audio:**
-- [Open Exam Prep Podcast](https://open.spotify.com/show/55EmWfdtPaK641q4Rk3mI1) - Free CFP exam prep podcast on Spotify
-- [Financial Planning Essentials Playlist](https://open.spotify.com/playlist/6GUIZvnpaiOiYmXkanqwZ8) - Study music playlist on Spotify
-
-**Video Content:**
-- [Open Exam Prep YouTube](https://www.youtube.com/@Open-exam-prep) - Free video content covering CFP exam topics
-
-**Website:**
-- [open-exam-prep.com](https://open-exam-prep.com/) - Additional free resources and study materials
-
-These free resources are great for passive learning during commutes, workouts, or downtime.
-
-## Key Features
-
-**Personalized Learning**:
-- 23 documented study sessions with detailed notes
-- Socratic teaching method (builds on what you already know)
-- Adaptive explanations based on your responses
-- Practice problems tailored to your weak areas
-
-**Comprehensive Tracking**:
-- Every session automatically documented
-- Knowledge gaps identified and tracked
-- Topics mastered with confidence levels
-- Progress measured against exam weights
-
-**Evidence-Based Approach**:
-- All answers verified with authoritative sources (IRS.gov, CFP Board)
-- No guessing on technical questions
-- Citations provided for complex rules
-- Focus on understanding "why" not just "what"
-
-## How to Use This Repository for Your Own CFP Exam Prep
-
-Want to use this AI-powered study system for your own CFP exam preparation? It's simple:
-
-1. **Clone this repository**:
-   ```bash
-   git clone https://github.com/chenran818/CFP-Study.git
-   cd CFP-Study
-   ```
-
-2. **Clear my study history** (start fresh):
-   ```bash
-   rm -rf progress/ sessions/
-   ```
-
-3. **Run Claude Code**:
-   ```bash
-   claude-code
-   ```
-
-4. **That's it!** Start asking CFP questions and Claude will:
-   - Teach you using the Socratic method
-   - Create new `progress/` and `sessions/` folders automatically
-   - Track your learning journey just like it did for me
-   - Adapt to your learning style
-
-The `CLAUDE.md` file contains all the instructions for how Claude should tutor you. The `2024 Slides/` folder has all the study materials already mapped to CFP topics. **It works magically!**
-
-## Getting Started
-
-Just start a conversation with Claude Code and ask your first CFP question. Claude will guide you from there while automatically tracking your progress.
-
----
-
-## About the Author
-
-After failing the CFP exam in November 2024, I knew I needed a different approach. Traditional study methods weren't working for me. Using Claude Code as my AI study partner transformed my preparation - the Socratic teaching method, personalized feedback, and systematic progress tracking made complex financial planning concepts finally click.
-
-If you're preparing for the CFP exam or any professional certification, I hope this repository inspires you to leverage AI tools in your learning journey.
-
-**Connect with me**: [linkedin.com/in/chenran818](https://linkedin.com/in/chenran818)
+**立即开始你的 ST 专家之路!**
